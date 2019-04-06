@@ -4,18 +4,20 @@ class SmurfForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      newSmurf: {
       name: '',
       age: '',
       height: ''
-      }
     };
   }
 
   addSmurf = event => {
     event.preventDefault();
     axios
-    .post('http://localhost:3333/smurfs', this.state.newSmurf)
+    .post('http://localhost:3333/smurfs', {
+      name:this.state.name,
+      age:this.state.age,
+      height:this.state.height
+    })
     .then(res => {
       console.log(res)
     })
@@ -24,11 +26,9 @@ class SmurfForm extends Component {
     })
 
     this.setState({
-      newSmurf: {
         name: '',
         age: '',
         height: ''
-      }
     });
   }
 
